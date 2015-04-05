@@ -69,6 +69,13 @@ read_ebp(void) {
     return ebp;
 }
 
+static inline uint32_t
+read_esp(void) {
+    uint32_t esp;
+    asm volatile ("movl %%esp, %0" : "=r" (esp));
+    return esp;
+}
+
 static inline void
 lidt(struct pseudodesc *pd) {
     asm volatile ("lidt (%0)" :: "r" (pd));
