@@ -36,7 +36,7 @@ static struct pseudodesc idt_pd = {
 /* idt_init - initialize IDT to each of the entry points in kern/trap/vectors.S */
 void
 idt_init(void) {
-     /* LAB1 YOUR CODE : STEP 2 */
+     /* LAB1 anohana_fy@live.com : STEP 2 */
      /* (1) Where are the entry addrs of each Interrupt Service Routine (ISR)?
       *     All ISR's entry addrs are stored in __vectors. where is uintptr_t __vectors[] ?
       *     __vectors[] is in kern/trap/vector.S which is produced by tools/vector.c
@@ -48,6 +48,17 @@ idt_init(void) {
       *     You don't know the meaning of this instruction? just google it! and check the libs/x86.h to know more.
       *     Notice: the argument of lidt is idt_pd. try to find it!
       */
+	extern uintptr_t __vectors[];
+	int i = 0;
+	for ( ; i < 32; i++ ){
+		SETGATE( idt[i], 0, GD_KTEXT, __vectors[i], 0 );
+	}
+	for ( ; i < 256; i++ ){
+		SETGATE( idt[i], 1, GD_KTEXT, __vectors[i], 0 );
+	}
+    SETGATE( idt[T_SWITCH_TOK], 0, GD_KTEXT, __vectors[T_SWITCH_TOK], DPL_USER );
+	lidt( &idt_pd );
+
 }
 
 static const char *
@@ -186,6 +197,11 @@ trap_dispatch(struct trapframe *tf) {
          * (2) Every TICK_NUM cycle, you can print some info using a funciton, such as print_ticks().
          * (3) Too Simple? Yes, I think so!
          */
+    	ticks++;
+    	//cprintf ( "%ticks : %d\n", ticks );
+    	if ( ticks % TICK_NUM == 0 ){
+    		print_ticks();
+    	}
         break;
     case IRQ_OFFSET + IRQ_COM1:
         c = cons_getc();
@@ -195,10 +211,20 @@ trap_dispatch(struct trapframe *tf) {
         c = cons_getc();
         cprintf("kbd [%03d] %c\n", c, c);
         break;
-    //LAB1 CHALLENGE 1 : YOUR CODE you should modify below codes.
+    //LAB1 CHALLENGE 1 : anohana_fy@live.com you should modify below codes.
     case T_SWITCH_TOU:
+        if (tf->tf_cs != USER_CS) {
+        	tf->tf_cs = USER_CS;
+        	tf->tf_ds = tf->tf_es = tf->tf_ss = USER_DS;
+        	tf->tf_eflags |= FL_IOPL_MASK;
+        }
+        break;
     case T_SWITCH_TOK:
-        panic("T_SWITCH_** ??\n");
+        if (tf->tf_cs != KERNEL_CS) {
+        	tf->tf_cs = KERNEL_CS;
+            tf->tf_ds = tf->tf_es = KERNEL_DS;
+            tf->tf_eflags &= ~FL_IOPL_MASK;
+        }
         break;
     case IRQ_OFFSET + IRQ_IDE1:
     case IRQ_OFFSET + IRQ_IDE2:
