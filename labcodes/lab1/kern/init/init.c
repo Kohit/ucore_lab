@@ -9,10 +9,7 @@
 #include <intr.h>
 #include <pmm.h>
 #include <kmonitor.h>
-<<<<<<< HEAD
 
-=======
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 int kern_init(void) __attribute__((noreturn));
 void grade_backtrace(void);
 static void lab1_switch_test(void);
@@ -41,11 +38,7 @@ kern_init(void) {
 
     //LAB1: CAHLLENGE 1 If you try to do it, uncomment lab1_switch_test()
     // user/kernel mode switch test
-<<<<<<< HEAD
     lab1_switch_test();
-=======
-    //lab1_switch_test();
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 
     /* do nothing */
     while (1);
@@ -92,7 +85,6 @@ lab1_print_cur_status(void) {
 static void
 lab1_switch_to_user(void) {
     //LAB1 CHALLENGE 1 : TODO
-<<<<<<< HEAD
 	asm volatile (
 		"sub $0x8, %%esp\n"
 	    "int %0\n"
@@ -100,14 +92,11 @@ lab1_switch_to_user(void) {
 	    :
 	    : "i"(T_SWITCH_TOU)
 	);
-=======
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 }
 
 static void
 lab1_switch_to_kernel(void) {
     //LAB1 CHALLENGE 1 :  TODO
-<<<<<<< HEAD
 	asm volatile (
 			"sub $0x8, %%esp\n"
 			"int %0\n"
@@ -115,8 +104,6 @@ lab1_switch_to_kernel(void) {
 	    :
 	    : "i"(T_SWITCH_TOK)
 	);
-=======
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 }
 
 static void

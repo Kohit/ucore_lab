@@ -98,7 +98,6 @@ schedule(void) {
     }
     local_intr_restore(intr_flag);
 }
-<<<<<<< HEAD
 
 // add timer to timer_list
 void
@@ -175,5 +174,3 @@ run_timer_list(void) {
     }
     local_intr_restore(intr_flag);
 }
-=======
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31

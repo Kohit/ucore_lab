@@ -5,7 +5,6 @@
 #include <list.h>
 #include <skew_heap.h>
 
-<<<<<<< HEAD
 #define MAX_TIME_SLICE 20
 
 struct proc_struct;
@@ -28,12 +27,6 @@ timer_init(timer_t *timer, struct proc_struct *proc, int expires) {
     return timer;
 }
 
-=======
-#define MAX_TIME_SLICE 5
-
-struct proc_struct;
-
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 struct run_queue;
 
 // The introduction of scheduling classes is borrrowed from Linux, and makes the 
@@ -72,12 +65,9 @@ struct run_queue {
 void sched_init(void);
 void wakeup_proc(struct proc_struct *proc);
 void schedule(void);
-<<<<<<< HEAD
 void add_timer(timer_t *timer);     // add timer to timer_list
 void del_timer(timer_t *timer);     // del timer from timer_list
 void run_timer_list(void);          // call scheduler to update tick related info, and check the timer is expired? If expired, then wakup proc
-=======
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 
 #endif /* !__KERN_SCHEDULE_SCHED_H__ */
 

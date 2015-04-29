@@ -12,11 +12,7 @@
   vmm design include two parts: mm_struct (mm) & vma_struct (vma)
   mm is the memory manager for the set of continuous virtual memory  
   area which have the same PDT. vma is a continuous virtual memory area.
-<<<<<<< HEAD
   There is a linear link list for vma & a redblack link list for vma in mm.
-=======
-  There a linear link list for vma & a redblack link list for vma in mm.
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 ---------------
   mm related functions:
    golbal functions
@@ -305,10 +301,7 @@ volatile unsigned int pgfault_num=0;
  *         -- The U/S flag (bit 2) indicates whether the processor was executing at user mode (1)
  *            or supervisor mode (0) at the time of the exception.
  */
-<<<<<<< HEAD
 
-=======
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 int
 do_pgfault(struct mm_struct *mm, uint32_t error_code, uintptr_t addr) {
     int ret = -E_INVAL;
@@ -372,19 +365,10 @@ do_pgfault(struct mm_struct *mm, uint32_t error_code, uintptr_t addr) {
     *   mm->pgdir : the PDT of these vma
     *
     */
-<<<<<<< HEAD
     /*LAB3 EXERCISE 1: YOUR CODE*/
     ptep = get_pte( mm->pgdir, addr, 1 );           //(1) try to find a pte, if pte's PT(Page Table) isn't existed, then create a PT.
     if (*ptep == 0) {
        pgdir_alloc_page( mm->pgdir, addr, perm );   //(2) if the phy addr isn't exist, then alloc a page & map the phy addr with logical addr
-=======
-#if 0
-    /*LAB3 EXERCISE 1: YOUR CODE*/
-    ptep = ???              //(1) try to find a pte, if pte's PT(Page Table) isn't existed, then create a PT.
-    if (*ptep == 0) {
-                            //(2) if the phy addr isn't exist, then alloc a page & map the phy addr with logical addr
-
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
     }
     else {
     /*LAB3 EXERCISE 2: YOUR CODE
@@ -400,15 +384,9 @@ do_pgfault(struct mm_struct *mm, uint32_t error_code, uintptr_t addr) {
     */
         if(swap_init_ok) {
             struct Page *page=NULL;
-<<<<<<< HEAD
             swap_in( mm, addr, &page );                       //(1）According to the mm AND addr, try to load the content of right disk page
             page_insert( mm->pgdir, page, addr, perm );       //    into the memory which page managed.
             swap_map_swappable( mm, addr, page, 1 );          //(2) According to the mm, addr AND page, setup the map of phy addr <---> logical addr
-=======
-                                    //(1）According to the mm AND addr, try to load the content of right disk page
-                                    //    into the memory which page managed.
-                                    //(2) According to the mm, addr AND page, setup the map of phy addr <---> logical addr
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
                                     //(3) make the page swappable.
         }
         else {
@@ -416,15 +394,7 @@ do_pgfault(struct mm_struct *mm, uint32_t error_code, uintptr_t addr) {
             goto failed;
         }
    }
-<<<<<<< HEAD
-=======
-#endif
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
    ret = 0;
 failed:
     return ret;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31

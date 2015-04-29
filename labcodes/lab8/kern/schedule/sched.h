@@ -5,11 +5,7 @@
 #include <list.h>
 #include <skew_heap.h>
 
-<<<<<<< HEAD
 #define MAX_TIME_SLICE 20
-=======
-#define MAX_TIME_SLICE 5
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 
 struct proc_struct;
 

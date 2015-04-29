@@ -294,12 +294,6 @@ MAKEOPTS	:= --quiet --no-print-directory
 run-%: build-%
 	$(V)$(QEMU) -parallel stdio $(QEMUOPTS) -serial null
 
-<<<<<<< HEAD
-=======
-run-nox-%: build-%
-	$(V)$(QEMU) -serial mon:stdio $(QEMUOPTS) -nographic
-
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 build-%: touch
 	$(V)$(MAKE) $(MAKEOPTS) "DEFS+=-DTEST=$* -DTESTSTART=$(RUN_PREFIX)$*_out_start -DTESTSIZE=$(RUN_PREFIX)$*_out_size"
 

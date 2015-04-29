@@ -228,7 +228,6 @@ targets: $(TARGETS)
 
 .DEFAULT_GOAL := targets
 
-<<<<<<< HEAD
 .PHONY: qemu qemu-nox debug debug-nox
 qemu-mon: $(UCOREIMG)
 	$(V)$(QEMU)  -no-reboot -monitor stdio -hda $< -serial null
@@ -248,30 +247,6 @@ debug-nox: $(UCOREIMG)
 	$(V)$(QEMU) -S -s -serial mon:stdio -hda $< -nographic &
 	$(V)sleep 2
 	$(V)$(TERMINAL) -e "gdb -q -x tools/gdbinit"
-=======
-QEMUOPTS = -hda $(UCOREIMG)
-
-.PHONY: qemu qemu-nox gdb debug debug-mon debug-nox
-qemu-mon: targets
-	$(V)$(QEMU)  -no-reboot -monitor stdio $(QEMUOPTS) -serial null
-qemu: targets
-	$(V)$(QEMU)  -no-reboot -parallel stdio $(QEMUOPTS) -serial null
-
-qemu-nox: targets
-	$(V)$(QEMU)  -no-reboot -serial mon:stdio $(QEMUOPTS) -nographic
-
-gdb:
-	$(V)$(GDB) -q -x tools/gdbinit
-
-debug: targets
-	$(V)$(QEMU) -S -s -parallel stdio $(QEMUOPTS) -serial null
-
-debug-mon: targets
-	$(V)$(QEMU) -S -s -monitor stdio $(QEMUOPTS) -parallel null -serial null
-
-debug-nox: targets
-	$(V)$(QEMU) -S -s -serial mon:stdio $(QEMUOPTS) -nographic
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 
 .PHONY: grade touch
 

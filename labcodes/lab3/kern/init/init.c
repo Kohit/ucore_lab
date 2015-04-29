@@ -93,7 +93,6 @@ lab1_print_cur_status(void) {
 static void
 lab1_switch_to_user(void) {
     //LAB1 CHALLENGE 1 : TODO
-<<<<<<< HEAD
 	asm volatile (
 		"sub $0x8, %%esp\n"
 	    "int %0\n"
@@ -101,14 +100,11 @@ lab1_switch_to_user(void) {
 	    :
 	    : "i"(T_SWITCH_TOU)
 	);
-=======
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 }
 
 static void
 lab1_switch_to_kernel(void) {
     //LAB1 CHALLENGE 1 :  TODO
-<<<<<<< HEAD
 	asm volatile (
 			"sub $0x8, %%esp\n"
 			"int %0\n"
@@ -116,8 +112,6 @@ lab1_switch_to_kernel(void) {
 	    :
 	    : "i"(T_SWITCH_TOK)
 	);
-=======
->>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 }
 
 static void
