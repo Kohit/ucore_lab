@@ -261,6 +261,12 @@ endef
 
 $(foreach p,$(USER_BINS),$(eval $(call fscopy,$(p),$(SFSROOT)$(SLASH))))
 
+<<<<<<< HEAD
+=======
+$(SFSROOT):
+	$(V)$(MKDIR) $@
+
+>>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 $(SFSIMG): $(SFSROOT) $(SFSBINS) | $(call totarget,mksfs)
 	$(V)dd if=/dev/zero of=$@ bs=1M count=128
 	@$(call totarget,mksfs) $@ $(SFSROOT)
@@ -332,6 +338,12 @@ run-%: build-%
 sh-%: script-%
 	$(V)$(QEMU) -parallel stdio $(QEMUOPTS) -serial null
 
+<<<<<<< HEAD
+=======
+run-nox-%: build-%
+	$(V)$(QEMU) -serial mon:stdio $(QEMUOPTS) -nographic
+
+>>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 build-%: touch
 	$(V)$(MAKE) $(MAKEOPTS) "DEFS+=-DTEST=$*" 
 

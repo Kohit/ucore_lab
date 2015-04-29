@@ -10,7 +10,11 @@
 #define SEG_UDATA    4
 #define SEG_TSS        5
 
+<<<<<<< HEAD
 /* global descrptor numbers */
+=======
+/* global descriptor numbers */
+>>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 #define GD_KTEXT    ((SEG_KTEXT) << 3)        // kernel text
 #define GD_KDATA    ((SEG_KDATA) << 3)        // kernel data
 #define GD_UTEXT    ((SEG_UTEXT) << 3)        // user text

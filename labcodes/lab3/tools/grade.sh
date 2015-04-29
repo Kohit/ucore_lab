@@ -105,7 +105,11 @@ show_msg() {
     echo $1
     shift
     if [ $# -gt 0 ]; then
+<<<<<<< HEAD
         echo "$@" | awk '{printf "   %s\n", $0}'
+=======
+        echo -e "$@" | awk '{printf "   %s\n", $0}'
+>>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
         echo
     fi
 }
@@ -146,9 +150,19 @@ run_qemu() {
     if [ -n "$brkfun" ]; then
         # find the address of the kernel $brkfun function
         brkaddr=`$grep " $brkfun\$" $sym_table | $sed -e's/ .*$//g'`
+<<<<<<< HEAD
         (
             echo "target remote localhost:$gdbport"
             echo "break *0x$brkaddr"
+=======
+        brkaddr_phys=`echo $brkaddr | sed "s/^c0/00/g"`
+        (
+            echo "target remote localhost:$gdbport"
+            echo "break *0x$brkaddr"
+            if [ "$brkaddr" != "$brkaddr_phys" ]; then
+                echo "break *0x$brkaddr_phys"
+            fi
+>>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
             echo "continue"
         ) > $gdb_in
 
@@ -179,6 +193,11 @@ build_run() {
     run_qemu
 
     show_time
+<<<<<<< HEAD
+=======
+
+    cp $qemu_out .`echo $tag | tr '[:upper:]' '[:lower:]' | sed 's/ /_/g'`.log
+>>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 }
 
 check_result() {
@@ -361,4 +380,7 @@ quick_check 'check ticks'                                       \
 
 ## print final-score
 show_final
+<<<<<<< HEAD
 
+=======
+>>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31

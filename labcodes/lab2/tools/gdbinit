@@ -1,3 +1,7 @@
 file bin/kernel
 target remote :1234
+<<<<<<< HEAD
 break pmm_init
+=======
+break kern_init
+>>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31

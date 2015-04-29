@@ -209,12 +209,21 @@ QEMUOPTS = -hda $(UCOREIMG)
 
 .PHONY: qemu qemu-nox gdb debug debug-mon debug-nox
 qemu-mon: targets
+<<<<<<< HEAD
 	$(V)$(QEMU) -monitor stdio $(QEMUOPTS) -serial null
 qemu: targets
 	$(V)$(QEMU) -parallel stdio $(QEMUOPTS) -serial null
 
 qemu-nox: targets
 	$(V)$(QEMU) -serial mon:stdio $(QEMUOPTS) -nographic
+=======
+	$(V)$(QEMU) -no-reboot -monitor stdio $(QEMUOPTS) -serial null
+qemu: targets
+	$(V)$(QEMU) -no-reboot -parallel stdio $(QEMUOPTS) -serial null
+
+qemu-nox: targets
+	$(V)$(QEMU) -no-reboot -serial mon:stdio $(QEMUOPTS) -nographic
+>>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 
 gdb:
 	$(V)$(GDB) -q -x tools/gdbinit

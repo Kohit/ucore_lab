@@ -1,5 +1,9 @@
 void inline ex1(void){
+<<<<<<< HEAD
         asm ("movl $0xffff, %%eax\n");
+=======
+        asm ("movl $0xffff, %eax\n");
+>>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 }
 
 void inline ex2(void){

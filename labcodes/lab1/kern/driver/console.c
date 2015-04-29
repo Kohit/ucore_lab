@@ -62,7 +62,10 @@ static uint16_t addr_6845;
 //    -- 索引寄存器 0x3D4或0x3B4,决定在数据寄存器中的数据表示什么。
 
 /* TEXT-mode CGA/VGA display output */
+<<<<<<< HEAD
 
+=======
+>>>>>>> ce80172f55fa900a8687ebe7ca9c20f377514b31
 static void
 cga_init(void) {
     volatile uint16_t *cp = (uint16_t *)CGA_BUF;   //CGA_BUF: 0xB8000 (彩色显示的显存物理基址)
