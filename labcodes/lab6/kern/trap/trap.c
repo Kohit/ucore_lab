@@ -230,18 +230,12 @@ trap_dispatch(struct trapframe *tf) {
          * (2) Every TICK_NUM cycle, you can print some info using a funciton, such as print_ticks().
          * (3) Too Simple? Yes, I think so!
          */
-    	ticks++;
-    	//cprintf ( "%ticks : %d\n", ticks );
-    	if ( ticks % TICK_NUM == 0 ){
-    		print_ticks();
-    		current->need_resched = 1;
-    		run_timer_list();
-    	}
+
         /* LAB5 anohana_fy@live.com / kohit */
         /* you should upate you lab1 code (just add ONE or TWO lines of code):
          *    Every TICK_NUM cycle, you should set current process's current->need_resched = 1
          */
-        /* LAB6 YOUR CODE */
+        /* LAB6 anohana_fy@live.com / kohit */
         /* IMPORTANT FUNCTIONS:
 	     * run_timer_list
 	     *----------------------
@@ -249,6 +243,12 @@ trap_dispatch(struct trapframe *tf) {
          *    Every tick, you should update the system time, iterate the timers, and trigger the timers which are end to call scheduler.
          *    You can use one funcitons to finish all these things.
          */
+    	ticks++;
+    	if ( ticks % TICK_NUM == 0 ){
+    		print_ticks();
+    		current->need_resched = 1;
+    		run_timer_list();
+    	}
         break;
     case IRQ_OFFSET + IRQ_COM1:
         c = cons_getc();
